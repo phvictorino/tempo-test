@@ -2,12 +2,13 @@ import React, { useContext } from 'react';
 import TeamItem from 'components/teams/TeamItem';
 import TeamContext from 'contexts/team';
 import PageTitle from 'components/shared/PageTitle';
+import { Team } from 'types/team';
 
 const Teams: React.FC = () => {
-	const { selectTeamId, teams } = useContext(TeamContext);
+	const { handleSelectTeam, teams } = useContext(TeamContext);
 
-	const handleClickTeam = (teamId: string): void => {
-		selectTeamId(teamId);
+	const handleClickTeam = (team: Team): void => {
+		handleSelectTeam(team);
 	};
 
 	return (
@@ -15,7 +16,12 @@ const Teams: React.FC = () => {
 			<PageTitle>Teams</PageTitle>
 			<dl>
 				{teams.map(({ name, id }) => (
-					<TeamItem name={name} id={id} onClick={handleClickTeam} key={id} />
+					<TeamItem
+						name={name}
+						id={id}
+						onClick={() => handleClickTeam({ id, name })}
+						key={id}
+					/>
 				))}
 			</dl>
 		</div>

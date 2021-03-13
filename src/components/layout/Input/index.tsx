@@ -18,7 +18,12 @@ const Input: React.FC = () => {
 
 	return (
 		<S.Container>
-			<input type="text" value={filter} onChange={handleChange} />
+			<input
+				placeholder="Filter something..."
+				type="text"
+				value={filter}
+				onChange={handleChange}
+			/>
 			<button type="submit" onClick={handleSubmit}>
 				<MdSearch size={20} />
 			</button>

@@ -5,3 +5,9 @@ export const Container = styled.div`
 	height: 100vh;
 	margin: 0 auto;
 `;
+
+export const AppTitle = styled.h1`
+	margin-top: 24px;
+	font-weight: 800;
+	font-size: 1.5rem;
+`;

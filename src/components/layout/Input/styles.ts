@@ -18,6 +18,10 @@ export const Container = styled.div`
 		&:focus {
 			outline: none;
 		}
+
+		&::placeholder {
+			color: #ddd;
+		}
 	}
 
 	button {

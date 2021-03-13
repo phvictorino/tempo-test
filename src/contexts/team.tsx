@@ -8,7 +8,8 @@ import { User } from 'types/user';
 interface TeamContextData {
 	usersOfSelectedTeam: User[];
 	teams: Team[];
-	selectTeamId: (teamId: string) => void;
+	selectedTeam: Team | undefined;
+	handleSelectTeam: (team: Team) => void;
 	handleSubmitFilter: (value: string) => void;
 }
 
@@ -16,6 +17,7 @@ const TeamContext = React.createContext<TeamContextData>({} as TeamContextData);
 
 export const TeamContextProvider: React.FC = ({ children }) => {
 	const [teams, setTeams] = useState<Team[]>([]);
+	const [selectedTeam, setSelectedTeam] = useState<Team | undefined>(undefined);
 	const [usersOfSelectedTeam, setUsersOfSelectedTeam] = useState<User[]>([]);
 	const history = useHistory();
 
@@ -27,12 +29,13 @@ export const TeamContextProvider: React.FC = ({ children }) => {
 		fillTeams();
 	}, []);
 
-	const selectTeamId = async (teamId: string): Promise<void> => {
+	const handleSelectTeam = async (newTeam: Team): Promise<void> => {
+		setSelectedTeam(newTeam);
 		const { data: allUsers } = await getAllUsers();
 		setUsersOfSelectedTeam(
-			allUsers.filter((user) => user.teamId.includes(teamId))
+			allUsers.filter((user) => user.teamId.includes(newTeam.id))
 		);
-		history.push(`/team/${teamId}`);
+		history.push(`/team/${newTeam.id}`);
 	};
 
 	const handleSubmitFilter = (filter: string): void => {
@@ -50,9 +53,10 @@ export const TeamContextProvider: React.FC = ({ children }) => {
 	return (
 		<TeamContext.Provider
 			value={{
-				selectTeamId,
 				usersOfSelectedTeam,
 				teams,
+				selectedTeam,
+				handleSelectTeam,
 				handleSubmitFilter,
 			}}
 		>

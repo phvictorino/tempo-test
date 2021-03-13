@@ -3,11 +3,11 @@ import TeamContext from 'contexts/team';
 import React, { useContext } from 'react';
 
 const Team: React.FC = () => {
-	const { usersOfSelectedTeam } = useContext(TeamContext);
+	const { usersOfSelectedTeam, selectedTeam } = useContext(TeamContext);
 
 	return (
 		<div>
-			<PageTitle>Team</PageTitle>
+			<PageTitle>Team: {selectedTeam?.name || ''}</PageTitle>
 			{JSON.stringify(usersOfSelectedTeam, null, 2)}
 		</div>
 	);
