@@ -1,8 +1,16 @@
 import PageTitle from 'components/shared/PageTitle';
-import React from 'react';
+import TeamContext from 'contexts/team';
+import React, { useContext } from 'react';
 
 const Team: React.FC = () => {
-	return <PageTitle>Team</PageTitle>;
+	const { usersOfSelectedTeam } = useContext(TeamContext);
+
+	return (
+		<div>
+			<PageTitle>Team</PageTitle>
+			{JSON.stringify(usersOfSelectedTeam, null, 2)}
+		</div>
+	);
 };
 
 export default Team;

@@ -38,5 +38,9 @@ export const Container = styled.div`
 		&:hover {
 			background-color: #ccc;
 		}
+
+		&:focus {
+			outline: none;
+		}
 	}
 `;

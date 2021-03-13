@@ -3,18 +3,19 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Team from 'pages/Team';
 import Teams from 'pages/Teams';
 import { TeamContextProvider } from 'contexts/team';
+import RouteWrapper from 'components/layout/RouteWrapper';
 
 const Routes: React.FC = () => {
 	return (
 		<BrowserRouter>
 			<Switch>
 				<TeamContextProvider>
-					<Route path="/" exact>
+					<RouteWrapper path="/" exact>
 						<Teams />
-					</Route>
-					<Route path="/team/:teamId" exact>
+					</RouteWrapper>
+					<RouteWrapper path="/team/:teamId" exact>
 						<Team />
-					</Route>
+					</RouteWrapper>
 				</TeamContextProvider>
 			</Switch>
 		</BrowserRouter>
