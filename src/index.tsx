@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Teams from './pages/Teams';
+
+import Routes from 'layouts/Routes';
 import MainLayout from './layouts/MainLayout';
 import { GlobalStyle } from './styles/global';
 
@@ -8,7 +9,7 @@ ReactDOM.render(
 	<React.StrictMode>
 		<GlobalStyle />
 		<MainLayout>
-			<Teams />
+			<Routes />
 		</MainLayout>
 	</React.StrictMode>,
 	document.getElementById('root')

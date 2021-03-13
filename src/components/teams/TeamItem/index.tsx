@@ -1,11 +1,27 @@
 import React from 'react';
+import { MdGroup, MdOpenInNew } from 'react-icons/all';
+import * as S from './styles';
 
 interface Props {
 	name: string;
+	id: string;
 }
 
-const TeamItem: React.FC<Props> = ({ name }) => {
-	return <h1>{name}</h1>;
+const TeamItem: React.FC<Props> = ({ name, id }) => {
+	return (
+		<S.Container>
+			<S.IconContainer>
+				<MdGroup size={25} />
+			</S.IconContainer>
+			<S.DataContainer>
+				<dd>{name}</dd>
+				<dl>ID: {id}</dl>
+			</S.DataContainer>
+			<S.ActionContainer to={`/team/${id}`}>
+				<MdOpenInNew size={18} />
+			</S.ActionContainer>
+		</S.Container>
+	);
 };
 
 export default TeamItem;

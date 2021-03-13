@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-	display: grid;
-	place-items: center;
+	max-width: 800px;
+	height: 100vh;
+	margin: 0 auto;
 `;

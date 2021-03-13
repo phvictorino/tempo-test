@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+	@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
@@ -20,6 +22,7 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+		font-family: 'Montserrat', sans-serif;
   }
 
   /* HTML5 display-role reset for older browsers */
@@ -30,6 +33,11 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     line-height: 1;
+		max-width: 900px;
+    margin: 0 auto;
+		color: #222;
+		font-size: 14px;
+		background-color: #eee;
   }
 
   ol, ul {
@@ -50,9 +58,8 @@ export const GlobalStyle = createGlobalStyle`
     border-collapse: collapse;
     border-spacing: 0;
   }
-  
-  body {
-    max-width: 900px;
-    margin: 0 auto;
-  }
+
+	input {
+		font-family: 'Montserrat', sans-serif;
+	}
 `;

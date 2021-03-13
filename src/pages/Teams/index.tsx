@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import TeamItem from 'components/teams/TeamItem';
-import { getAllTeams } from 'services/teams';
+import { getAllTeams } from 'adapters/teams';
 import { Team } from 'types/team';
 import * as S from './styles';
 
@@ -14,9 +14,12 @@ const List: React.FC = () => {
 
 	return (
 		<S.Container>
-			{teams.map((team) => (
-				<TeamItem name={team.name} />
-			))}
+			<h2>Teams</h2>
+			<dt>
+				{teams.map(({ name, id }) => (
+					<TeamItem name={name} id={id} />
+				))}
+			</dt>
 		</S.Container>
 	);
 };
