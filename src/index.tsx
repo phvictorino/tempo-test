@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Routes from 'layouts/Routes';
+import { TeamContextProvider } from 'contexts/team';
 import MainLayout from './layouts/MainLayout';
 import { GlobalStyle } from './styles/global';
 

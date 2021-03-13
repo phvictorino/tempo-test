@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import colors from 'styles/colors';
 
 export const Container = styled.div`
@@ -40,12 +39,19 @@ export const DataContainer = styled.div`
 	}
 `;
 
-export const ActionContainer = styled(Link)`
+export const ActionContainer = styled.button`
 	display: grid;
 	place-items: center;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
 
 	color: #000;
 	transition: color 0.2s;
+
+	&:focus {
+		outline: none;
+	}
 
 	&:hover {
 		color: #aaa;
