@@ -3,10 +3,16 @@ import colors from 'styles/colors';
 
 export const Container = styled.div`
 	width: 100%;
-	margin-top: 10px;
+	margin-top: 15px;
 	background-color: white;
 	border-radius: 10px;
-	box-shadow: 1px 1px 5px #ccc;
+	box-shadow: 1px 1px 2px #ccc;
+
+	transition: box-shadow 0.5;
+
+	&:hover {
+		box-shadow: 2px 2px 10px #ccc;
+	}
 
 	display: grid;
 	grid-template-columns: 1fr 8fr 1fr;

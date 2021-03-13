@@ -1,7 +1,8 @@
+import PageTitle from 'components/shared/PageTitle';
 import React from 'react';
 
 const Team: React.FC = () => {
-	return <h1>Team</h1>;
+	return <PageTitle>Team</PageTitle>;
 };
 
 export default Team;
