@@ -1,12 +1,14 @@
 import TeamContext from 'contexts/team';
 import React, { useContext, useState } from 'react';
 import { MdSearch } from 'react-icons/md';
+import { useLocation } from 'react-router-dom';
 import * as S from './styles';
 
-const Input: React.FC = () => {
+const Filter: React.FC = () => {
 	const [filter, setFilter] = useState('');
+	const { pathname } = useLocation();
 
-	const { handleSubmitFilter } = useContext(TeamContext);
+	const { handleFilterTeams, handleFilterUsers } = useContext(TeamContext);
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		setFilter(event.target.value);
@@ -14,7 +16,13 @@ const Input: React.FC = () => {
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
 		event.preventDefault();
-		handleSubmitFilter(filter);
+		const currentRoute = pathname.split('/')[1];
+		const mapConditions = new Map([
+			['teams', handleFilterTeams],
+			['team', handleFilterUsers],
+		]);
+		const filterFunction = mapConditions.get(currentRoute);
+		if (filterFunction) filterFunction(filter);
 	};
 
 	return (
@@ -34,4 +42,4 @@ const Input: React.FC = () => {
 	);
 };
 
-export default Input;
+export default Filter;

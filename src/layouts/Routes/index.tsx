@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Team from 'pages/Team';
 import Teams from 'pages/Teams';
 import { TeamContextProvider } from 'contexts/team';
@@ -10,7 +10,10 @@ const Routes: React.FC = () => {
 		<BrowserRouter>
 			<Switch>
 				<TeamContextProvider>
-					<RouteWrapper path="/" exact>
+					<Route exact path="/">
+						<Redirect to="/teams" />
+					</Route>
+					<RouteWrapper path="/teams" exact>
 						<Teams />
 					</RouteWrapper>
 					<RouteWrapper path="/team/:teamId" exact>

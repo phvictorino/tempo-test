@@ -2,13 +2,13 @@ import LoadingOrChildren from 'components/shared/LoadingOrChildren';
 import PageTitle from 'components/shared/PageTitle';
 import TeamContext from 'contexts/team';
 import React, { useContext } from 'react';
-import { MdArrowBack, MdChevronLeft, MdPerson } from 'react-icons/md';
+import { MdArrowBack, MdPerson } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import * as S from './styles';
 import ListItem from '../../components/shared/ListItem';
+import * as S from './styles';
 
 const Team: React.FC = () => {
-	const { usersOfSelectedTeam, selectedTeam, isLoading } = useContext(
+	const { filteredUsersOfTeam, selectedTeam, isLoading } = useContext(
 		TeamContext
 	);
 
@@ -20,7 +20,7 @@ const Team: React.FC = () => {
 				</Link>
 				<PageTitle>Team: {selectedTeam?.name || ''}</PageTitle>
 			</S.TitleContainer>
-			{usersOfSelectedTeam.map((user) => (
+			{filteredUsersOfTeam.map((user) => (
 				<ListItem
 					key={user.id}
 					name={user.name}

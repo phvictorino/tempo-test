@@ -1,14 +1,16 @@
-import React, { useContext } from 'react';
-import ListItem from 'components/shared/ListItem';
-import TeamContext from 'contexts/team';
-import PageTitle from 'components/shared/PageTitle';
-import { Team } from 'types/team';
 import EmptyList from 'components/shared/EmptyList';
+import ListItem from 'components/shared/ListItem';
 import LoadingOrChildren from 'components/shared/LoadingOrChildren';
-import { MdGroup, MdOpenInNew } from 'react-icons/all';
+import PageTitle from 'components/shared/PageTitle';
+import TeamContext from 'contexts/team';
+import React, { useContext } from 'react';
+import { MdGroup } from 'react-icons/all';
+import { Team } from 'types/team';
 
 const Teams: React.FC = () => {
-	const { handleSelectTeam, teams, isLoading } = useContext(TeamContext);
+	const { handleSelectTeam, filteredTeams, isLoading } = useContext(
+		TeamContext
+	);
 
 	const handleClickTeam = (team: Team): void => {
 		handleSelectTeam(team);
@@ -17,9 +19,9 @@ const Teams: React.FC = () => {
 	return (
 		<LoadingOrChildren isLoading={isLoading}>
 			<PageTitle>Teams</PageTitle>
-			{teams.length > 0 ? (
+			{filteredTeams.length > 0 ? (
 				<dl>
-					{teams.map(({ name, id }) => (
+					{filteredTeams.map(({ name, id }) => (
 						<ListItem
 							name={name}
 							id={id}

@@ -6,12 +6,12 @@ interface Props {
 	name: string;
 	id: string;
 	icon: React.ReactNode;
-	onClick?: (id: string) => void;
+	onClick?: () => void;
 }
 
 const ListItem: React.FC<Props> = ({ name, id, icon, onClick }) => {
 	const handleClick = (): void => {
-		if (onClick) onClick(id);
+		if (onClick) onClick();
 	};
 
 	return (

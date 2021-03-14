@@ -1,4 +1,3 @@
-import Input from 'components/layout/Input';
 import React from 'react';
 import * as S from './styles';
 

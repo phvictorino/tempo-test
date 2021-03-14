@@ -6,31 +6,37 @@ import { Team } from 'types/team';
 import { User } from 'types/user';
 
 interface TeamContextData {
-	usersOfSelectedTeam: User[];
-	teams: Team[];
+	filteredUsersOfTeam: User[];
+	filteredTeams: Team[];
 	selectedTeam: Team | undefined;
 	isLoading: boolean;
 	handleSelectTeam: (team: Team) => void;
-	handleSubmitFilter: (value: string) => void;
+	handleFilterTeams: (value: string) => void;
+	handleFilterUsers: (value: string) => void;
 }
 
 const TeamContext = React.createContext<TeamContextData>({} as TeamContextData);
 
 export const TeamContextProvider: React.FC = ({ children }) => {
-	const [teams, setTeams] = useState<Team[]>([]);
+	const [allTeams, setAllTeams] = useState<Team[]>([]);
+	const [filteredTeams, setFilteredTeams] = useState<Team[]>([]);
+	const [allUsersOfTeam, setAllUsersOfTeam] = useState<User[]>([]);
+	const [filteredUsersOfTeam, setFilteredUsersOfTeam] = useState<User[]>([]);
 	const [selectedTeam, setSelectedTeam] = useState<Team | undefined>(undefined);
 	const [isLoading, setIsLoading] = useState(true);
-	const [usersOfSelectedTeam, setUsersOfSelectedTeam] = useState<User[]>([]);
 	const history = useHistory();
 
-	const fillTeams = (): void => {
+	const findAllTeams = (): void => {
 		getAllTeams()
-			.then(({ data }) => setTeams(data))
+			.then(({ data }) => {
+				setAllTeams(data);
+				setFilteredTeams(data);
+			})
 			.finally(() => setIsLoading(false));
 	};
 
 	useEffect(() => {
-		fillTeams();
+		findAllTeams();
 	}, []);
 
 	const handleSelectTeam = async (newTeam: Team): Promise<void> => {
@@ -38,34 +44,46 @@ export const TeamContextProvider: React.FC = ({ children }) => {
 		history.push(`/team/${newTeam.id}`);
 		setSelectedTeam(newTeam);
 		const { data: allUsers } = await getAllUsers();
-		setUsersOfSelectedTeam(
-			allUsers.filter((user) => user.teamId.includes(newTeam.id))
-		);
+		const users = allUsers.filter((user) => user.teamId.includes(newTeam.id));
+		setAllUsersOfTeam(users);
+		setFilteredUsersOfTeam(users);
 		setIsLoading(false);
 	};
 
-	const handleSubmitFilter = (filter: string): void => {
+	const handleFilterTeams = (filter: string): void => {
 		if (filter) {
-			setTeams(
-				teams.filter((team) =>
+			setFilteredTeams(
+				allTeams.filter((team) =>
 					team.name.toLowerCase().includes(filter.toLowerCase())
 				)
 			);
 		} else {
-			setIsLoading(true);
-			fillTeams();
+			setFilteredTeams(allTeams);
+		}
+	};
+
+	const handleFilterUsers = (filter: string): void => {
+		if (filter) {
+			setFilteredUsersOfTeam(
+				allUsersOfTeam.filter((user) =>
+					user.name.toLowerCase().includes(filter.toLowerCase())
+				)
+			);
+		} else {
+			setFilteredUsersOfTeam(allUsersOfTeam);
 		}
 	};
 
 	return (
 		<TeamContext.Provider
 			value={{
-				usersOfSelectedTeam,
-				teams,
+				filteredUsersOfTeam,
+				filteredTeams,
 				selectedTeam,
 				isLoading,
 				handleSelectTeam,
-				handleSubmitFilter,
+				handleFilterTeams,
+				handleFilterUsers,
 			}}
 		>
 			{children}

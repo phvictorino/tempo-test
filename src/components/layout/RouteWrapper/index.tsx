@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Input from '../Input';
+import Filter from '../Filter';
 
 interface Props {
 	path: string;
@@ -10,7 +10,7 @@ interface Props {
 const RouteWrapper: React.FC<Props> = ({ children, path, exact }) => {
 	return (
 		<Route path={path} exact={exact}>
-			<Input />
+			<Filter />
 			{children}
 		</Route>
 	);
