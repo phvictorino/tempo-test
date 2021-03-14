@@ -1,5 +1,6 @@
 import EmptyList from 'components/shared/EmptyList';
 import ListItem from 'components/shared/ListItem';
+import ListPossiblyEmpty from 'components/shared/ListPossiblyEmpty';
 import LoadingOrChildren from 'components/shared/LoadingOrChildren';
 import PageTitle from 'components/shared/PageTitle';
 import TeamContext from 'contexts/team';
@@ -19,7 +20,7 @@ const Teams: React.FC = () => {
 	return (
 		<LoadingOrChildren isLoading={isLoading}>
 			<PageTitle>Teams</PageTitle>
-			{filteredTeams.length > 0 ? (
+			<ListPossiblyEmpty listLength={filteredTeams.length}>
 				<dl>
 					{filteredTeams.map(({ name, id }) => (
 						<ListItem
@@ -31,9 +32,7 @@ const Teams: React.FC = () => {
 						/>
 					))}
 				</dl>
-			) : (
-				<EmptyList />
-			)}
+			</ListPossiblyEmpty>
 		</LoadingOrChildren>
 	);
 };

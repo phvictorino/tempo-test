@@ -1,3 +1,4 @@
+import ListPossiblyEmpty from 'components/shared/ListPossiblyEmpty';
 import LoadingOrChildren from 'components/shared/LoadingOrChildren';
 import PageTitle from 'components/shared/PageTitle';
 import TeamContext from 'contexts/team';
@@ -20,14 +21,16 @@ const Team: React.FC = () => {
 				</Link>
 				<PageTitle>Team: {selectedTeam?.name || ''}</PageTitle>
 			</S.TitleContainer>
-			{filteredUsersOfTeam.map((user) => (
-				<ListItem
-					key={user.id}
-					name={user.name}
-					id={user.id}
-					icon={<MdPerson size={25} />}
-				/>
-			))}
+			<ListPossiblyEmpty listLength={filteredUsersOfTeam.length}>
+				{filteredUsersOfTeam.map((user) => (
+					<ListItem
+						key={user.id}
+						name={user.name}
+						id={user.id}
+						icon={<MdPerson size={25} />}
+					/>
+				))}
+			</ListPossiblyEmpty>
 		</LoadingOrChildren>
 	);
 };
