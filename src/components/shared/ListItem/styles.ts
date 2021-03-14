@@ -40,7 +40,7 @@ export const DataContainer = styled.div`
 
 	dl {
 		margin-left: 12px;
-		color: #ccc;
+		color: #aaa;
 		font-size: 0.8rem;
 		margin-top: 6px;
 	}

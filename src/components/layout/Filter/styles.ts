@@ -22,7 +22,7 @@ export const Container = styled.div`
 		}
 
 		&::placeholder {
-			color: #ddd;
+			color: #bbb;
 		}
 	}
 
