@@ -4,8 +4,10 @@ export const Container = styled.div`
 	width: 100%;
 	margin: 24px 0;
 
-	display: grid;
-	grid-template-columns: 8fr 1fr;
+	form {
+		display: grid;
+		grid-template-columns: 8fr 1fr;
+	}
 
 	input {
 		margin: 0 auto;

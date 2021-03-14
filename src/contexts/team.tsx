@@ -9,6 +9,7 @@ interface TeamContextData {
 	usersOfSelectedTeam: User[];
 	teams: Team[];
 	selectedTeam: Team | undefined;
+	isLoading: boolean;
 	handleSelectTeam: (team: Team) => void;
 	handleSubmitFilter: (value: string) => void;
 }
@@ -18,11 +19,14 @@ const TeamContext = React.createContext<TeamContextData>({} as TeamContextData);
 export const TeamContextProvider: React.FC = ({ children }) => {
 	const [teams, setTeams] = useState<Team[]>([]);
 	const [selectedTeam, setSelectedTeam] = useState<Team | undefined>(undefined);
+	const [isLoading, setIsLoading] = useState(true);
 	const [usersOfSelectedTeam, setUsersOfSelectedTeam] = useState<User[]>([]);
 	const history = useHistory();
 
 	const fillTeams = (): void => {
-		getAllTeams().then(({ data }) => setTeams(data));
+		getAllTeams()
+			.then(({ data }) => setTeams(data))
+			.finally(() => setIsLoading(false));
 	};
 
 	useEffect(() => {
@@ -30,12 +34,14 @@ export const TeamContextProvider: React.FC = ({ children }) => {
 	}, []);
 
 	const handleSelectTeam = async (newTeam: Team): Promise<void> => {
+		setIsLoading(true);
+		history.push(`/team/${newTeam.id}`);
 		setSelectedTeam(newTeam);
 		const { data: allUsers } = await getAllUsers();
 		setUsersOfSelectedTeam(
 			allUsers.filter((user) => user.teamId.includes(newTeam.id))
 		);
-		history.push(`/team/${newTeam.id}`);
+		setIsLoading(false);
 	};
 
 	const handleSubmitFilter = (filter: string): void => {
@@ -56,6 +62,7 @@ export const TeamContextProvider: React.FC = ({ children }) => {
 				usersOfSelectedTeam,
 				teams,
 				selectedTeam,
+				isLoading,
 				handleSelectTeam,
 				handleSubmitFilter,
 			}}

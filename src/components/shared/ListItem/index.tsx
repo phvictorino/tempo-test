@@ -5,10 +5,10 @@ import * as S from './styles';
 interface Props {
 	name: string;
 	id: string;
-	onClick: (teamId: string) => void;
+	onClick: (id: string) => void;
 }
 
-const TeamItem: React.FC<Props> = ({ name, id, onClick }) => {
+const ListItem: React.FC<Props> = ({ name, id, onClick }) => {
 	const handleClick = (): void => {
 		onClick(id);
 	};
@@ -29,4 +29,4 @@ const TeamItem: React.FC<Props> = ({ name, id, onClick }) => {
 	);
 };
 
-export default TeamItem;
+export default ListItem;

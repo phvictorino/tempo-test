@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 import colors from 'styles/colors';
+import defaults from 'styles/defaults';
 
 export const Container = styled.div`
 	width: 100%;
 	margin-top: 15px;
 	background-color: white;
-	border-radius: 10px;
-	box-shadow: 1px 1px 2px #ccc;
+	border-radius: ${defaults.borderRadius};
+	box-shadow: ${defaults.boxShadow};
 
-	transition: box-shadow 0.5;
+	transition: box-shadow 0.2s;
 
 	&:hover {
 		box-shadow: 2px 2px 10px #ccc;

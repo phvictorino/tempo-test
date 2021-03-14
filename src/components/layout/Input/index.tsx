@@ -12,21 +12,24 @@ const Input: React.FC = () => {
 		setFilter(event.target.value);
 	};
 
-	const handleSubmit = (): void => {
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+		event.preventDefault();
 		handleSubmitFilter(filter);
 	};
 
 	return (
 		<S.Container>
-			<input
-				placeholder="Filter something..."
-				type="text"
-				value={filter}
-				onChange={handleChange}
-			/>
-			<button type="submit" onClick={handleSubmit}>
-				<MdSearch size={20} />
-			</button>
+			<form onSubmit={handleSubmit}>
+				<input
+					placeholder="Filter something..."
+					type="text"
+					value={filter}
+					onChange={handleChange}
+				/>
+				<button type="submit">
+					<MdSearch size={20} />
+				</button>
+			</form>
 		</S.Container>
 	);
 };
