@@ -52,6 +52,7 @@ export const TeamContextProvider: React.FC = ({ children }) => {
 				)
 			);
 		} else {
+			setIsLoading(true);
 			fillTeams();
 		}
 	};

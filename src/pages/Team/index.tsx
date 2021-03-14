@@ -2,9 +2,10 @@ import LoadingOrChildren from 'components/shared/LoadingOrChildren';
 import PageTitle from 'components/shared/PageTitle';
 import TeamContext from 'contexts/team';
 import React, { useContext } from 'react';
-import { MdArrowBack, MdChevronLeft } from 'react-icons/md';
+import { MdArrowBack, MdChevronLeft, MdPerson } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import * as S from './styles';
+import ListItem from '../../components/shared/ListItem';
 
 const Team: React.FC = () => {
 	const { usersOfSelectedTeam, selectedTeam, isLoading } = useContext(
@@ -19,7 +20,14 @@ const Team: React.FC = () => {
 				</Link>
 				<PageTitle>Team: {selectedTeam?.name || ''}</PageTitle>
 			</S.TitleContainer>
-			{JSON.stringify(usersOfSelectedTeam, null, 2)}
+			{usersOfSelectedTeam.map((user) => (
+				<ListItem
+					key={user.id}
+					name={user.name}
+					id={user.id}
+					icon={<MdPerson size={25} />}
+				/>
+			))}
 		</LoadingOrChildren>
 	);
 };

@@ -5,6 +5,7 @@ import PageTitle from 'components/shared/PageTitle';
 import { Team } from 'types/team';
 import EmptyList from 'components/shared/EmptyList';
 import LoadingOrChildren from 'components/shared/LoadingOrChildren';
+import { MdGroup, MdOpenInNew } from 'react-icons/all';
 
 const Teams: React.FC = () => {
 	const { handleSelectTeam, teams, isLoading } = useContext(TeamContext);
@@ -24,6 +25,7 @@ const Teams: React.FC = () => {
 							id={id}
 							onClick={() => handleClickTeam({ id, name })}
 							key={id}
+							icon={<MdGroup size={25} />}
 						/>
 					))}
 				</dl>
