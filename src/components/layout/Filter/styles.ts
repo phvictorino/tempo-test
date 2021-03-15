@@ -27,6 +27,7 @@ export const Container = styled.div`
 	}
 
 	button {
+		min-width: 70px;
 		background-color: #ddd;
 		border: none;
 		border-left: 1px #eee solid;
