@@ -5,8 +5,8 @@ import * as S from './styles';
 const EmptyList: React.FC = () => {
 	return (
 		<S.Container>
-			<MdInfo size={40} />
-			<span>No records found.</span>
+			<MdInfo data-testid="information-icon" size={40} />
+			<span data-testid="information-text">No records found.</span>
 		</S.Container>
 	);
 };

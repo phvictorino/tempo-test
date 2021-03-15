@@ -6,7 +6,11 @@ interface Props {
 }
 
 const ListPossiblyEmpty: React.FC<Props> = ({ listLength, children }) => {
-	return <>{listLength > 0 ? children : <EmptyList />}</>;
+	return (
+		<div data-testid="empty-information">
+			{listLength > 0 ? children : <EmptyList />}
+		</div>
+	);
 };
 
 export default ListPossiblyEmpty;

@@ -22,14 +22,16 @@ const Team: React.FC = () => {
 				<PageTitle>Team: {selectedTeam?.name || ''}</PageTitle>
 			</S.TitleContainer>
 			<ListPossiblyEmpty listLength={filteredUsersOfTeam.length}>
-				{filteredUsersOfTeam.map((user) => (
-					<ListItem
-						key={user.id}
-						name={user.name}
-						id={user.id}
-						icon={<MdPerson size={25} />}
-					/>
-				))}
+				<dl data-testid="users-list">
+					{filteredUsersOfTeam.map((user) => (
+						<ListItem
+							key={user.id}
+							name={user.name}
+							id={user.id}
+							icon={<MdPerson size={25} />}
+						/>
+					))}
+				</dl>
 			</ListPossiblyEmpty>
 		</LoadingOrChildren>
 	);

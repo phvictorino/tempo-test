@@ -9,9 +9,9 @@ interface Props {
 const LoadingOrChildren: React.FC<Props> = ({ isLoading, children }) => (
 	<>
 		{isLoading ? (
-			<S.Container>
+			<S.Container data-testid="loading-container">
 				<ScaleLoader />
-				<span>Loading...</span>
+				<span data-testid="loading-text">Loading...</span>
 			</S.Container>
 		) : (
 			children

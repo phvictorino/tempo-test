@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './styles';
 
 const PageTitle: React.FC = ({ children }) => {
-	return <S.Title>{children}</S.Title>;
+	return <S.Title data-testid="title">{children}</S.Title>;
 };
 
 export default PageTitle;

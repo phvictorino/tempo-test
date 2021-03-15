@@ -1,5 +1,5 @@
 import React from 'react';
-import { MdOpenInNew } from 'react-icons/all';
+import { MdOpenInNew } from 'react-icons/md';
 import * as S from './styles';
 
 interface Props {
@@ -16,13 +16,17 @@ const ListItem: React.FC<Props> = ({ name, id, icon, onClick }) => {
 
 	return (
 		<S.Container>
-			<S.IconContainer>{icon}</S.IconContainer>
+			<S.IconContainer data-testid="item-icon">{icon}</S.IconContainer>
 			<S.DataContainer>
-				<dd>{name}</dd>
-				<dl>ID: {id}</dl>
+				<dd data-testid="item-name">{name}</dd>
+				<dl data-testid="item-id">ID: {id}</dl>
 			</S.DataContainer>
 			{onClick && (
-				<S.ActionContainer type="button" onClick={handleClick}>
+				<S.ActionContainer
+					data-testid="item-action"
+					type="button"
+					onClick={handleClick}
+				>
 					<MdOpenInNew size={18} />
 				</S.ActionContainer>
 			)}

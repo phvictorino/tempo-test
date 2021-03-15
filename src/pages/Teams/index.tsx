@@ -1,11 +1,10 @@
-import EmptyList from 'components/shared/EmptyList';
+import React, { useContext } from 'react';
 import ListItem from 'components/shared/ListItem';
 import ListPossiblyEmpty from 'components/shared/ListPossiblyEmpty';
 import LoadingOrChildren from 'components/shared/LoadingOrChildren';
 import PageTitle from 'components/shared/PageTitle';
 import TeamContext from 'contexts/team';
-import React, { useContext } from 'react';
-import { MdGroup } from 'react-icons/all';
+import { MdGroup } from 'react-icons/md';
 import { Team } from 'types/team';
 
 const Teams: React.FC = () => {
@@ -21,7 +20,7 @@ const Teams: React.FC = () => {
 		<LoadingOrChildren isLoading={isLoading}>
 			<PageTitle>Teams</PageTitle>
 			<ListPossiblyEmpty listLength={filteredTeams.length}>
-				<dl>
+				<dl data-testid="teams-list">
 					{filteredTeams.map(({ name, id }) => (
 						<ListItem
 							name={name}
