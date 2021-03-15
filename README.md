@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-Use node version 12+.
+Use node version 14+.
 
 In the project directory, you can run:
 
