@@ -15,10 +15,11 @@ In the project directory, you can run:
 ## Solution
 
 - Used React, Context API, Styled Components, React Testing Library, React Router Dom, React Icons and other minor packages.
-- Handling state with unique Context API to avoid messy props.
+- Handling state with unique Context API to avoid messy props and using the separated concern of business logic. 
+- Created a logic to find the user's of selected team, combining two arrays and ES6 arrays methods. 
 - Created a list of teams which is the main route of app.
 - Created a team page to show the team members, filtering the list of users by team id.
-- Created a filter with logic to handle with different pages and filters.
+- Created a filter with logic using ES6 and best JS practices to handle with different pages and filters.
 - Created two lists of teams and users looking for better performance on filter records.
 - Created a reusable component of ListItem to use with Team and User, including conditional rendering of item action.
 - Created a reusable component to handle with loading indicator when the app is finding some API data.
